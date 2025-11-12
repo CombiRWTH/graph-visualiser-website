@@ -12,16 +12,25 @@ export interface IAlgorithmCardProps {
  */
 export function AlgorithmCard({ algorithm }: IAlgorithmCardProps): ReactElement {
 	const navigate = useNavigate();
+
 	return (
 		<div
-			className="hover:bg-primary-focus card flex w-full max-w-96 cursor-pointer items-center gap-5 bg-primary p-5 shadow-xl transition-transform hover:-translate-y-2 "
-			onClick={() => {
-				navigate(`/graph-select/${algorithm.name.toLowerCase()}`);
-			}}
+			className="
+				flex 
+				w-full 
+				cursor-pointer 
+				items-center 
+				justify-center rounded-md 
+				bg-base-200
+				px-3 
+				py-2 
+				text-sm 
+				transition-all
+				duration-200 hover:bg-primary/20 hover:shadow-sm
+			"
+			onClick={() => navigate(`/graph-select/${algorithm.name.toLowerCase()}`)}
 		>
-			<div className={"flex w-full flex-col items-center "}>
-				<h1 className="card-title text-2xl font-normal text-primary-content lg:text-xl">{algorithm.name}</h1>
-			</div>
+			<h3 className="text-center font-medium text-base-content">{algorithm.name}</h3>
 		</div>
 	);
 }

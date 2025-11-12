@@ -31,10 +31,11 @@ import { useEdmondsKarpStore } from "../algorithms/edmonds_karp/store";
 import { useDinicStore } from "../algorithms/dinic/store";
 
 export enum AlgorithmCategory {
-	SHORTEST_PATH = "Shortest Path",
 	MINIMUM_SPANNING_TREE = "Minimum Spanning Tree",
-	HAMILTON_CYCLE = "Hamilton Cycle",
+	SHORTEST_PATH = "Shortest Path",
 	MAX_FLOW = "Maximum Flow",
+	MAX_MATCHING = "Maximum Matchings",
+	HAMILTON_CYCLE = "Hamilton Cycle",
 }
 
 export interface ITrainingPageProps {

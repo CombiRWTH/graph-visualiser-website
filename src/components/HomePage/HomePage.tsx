@@ -7,50 +7,43 @@ import { CategoryCard } from "./CategoryCard";
 import AppliedExamplesCard from "../AppliedExamples/AppliedExampleButton";
 
 /**
- * The home page component which will display all available algorithms, the graph builder and the concept training
- * as cards and routes to the respective pages
+ * Home page with vertically stacked categories and graph selection cards
  */
 export const HomePage: React.FC = () => {
 	const navigate = useNavigate();
 
 	return (
-		<div className="box-border flex w-full flex-wrap justify-center gap-10 overflow-auto p-10">
-			{Object.values(AlgorithmCategory).map((category) => (
-				<CategoryCard
-					key={category + "-card"}
-					category={category}
-				/>
-			))}
+		<div className="flex h-screen flex-col items-center gap-4 overflow-y-auto p-10">
+			{/* Category Cards stacked vertically */}
+			<div className="flex w-full flex-col gap-4">
+				{Object.values(AlgorithmCategory).map((category) => (
+					<CategoryCard
+						key={category}
+						category={category}
+					/>
+				))}
+			</div>
 
-			<div className="flex w-80 flex-col gap-4">
+			{/* Graph Builder / Concept Training stacked vertically */}
+			{/* Graph concepts / builder / fun with mazes horizontally */}
+			<div className="flex w-full flex-col gap-4  md:flex-row">
 				<GraphSelectionCard
-					onClick={() => {
-						navigate("/graph-concepts");
-					}}
+					onClick={() => navigate("/graph-concepts")}
 					className="flex-1"
 				>
-					<div className="flex h-full flex-col items-center justify-center gap-2">
-						<ShapesIcon className="hidden size-16 pt-1 md:block" />
-						<h3 className="text-1xl card-title py-2 font-normal">
-							{" "}
-							<ShapesIcon className="size-10  md:hidden" /> Graph Concepts Training
-						</h3>
+					<div className="flex h-full flex-col items-center justify-center gap-2 p-4">
+						<ShapesIcon className="hidden size-16 md:block" />
+						<h3 className="text-center text-xl font-semibold md:block">Graph Concepts Training</h3>
 					</div>
 				</GraphSelectionCard>
 
 				<GraphSelectionCard
-					onClick={() => {
-						navigate("/graph-select");
-					}}
+					onClick={() => navigate("/graph-select")}
 					className="flex-1"
 				>
-					<div className="flex h-full flex-col items-center justify-center gap-2">
-						<WorkflowIcon className="hidden size-16 pt-1 md:block" />
-						<h3 className="text-1xl card-title hidden py-2 font-normal md:block">
-							{" "}
-							<WorkflowIcon className="size-10 md:hidden" />
-							Build a new graph
-						</h3>
+					<div className="flex h-full flex-col items-center justify-center gap-2 p-4">
+						<WorkflowIcon className="hidden size-16 md:block" />
+						<h3 className="text-center text-xl font-semibold md:block">Build a New Graph</h3>
 					</div>
 				</GraphSelectionCard>
 
