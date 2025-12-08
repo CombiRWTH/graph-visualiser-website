@@ -1,0 +1,14 @@
+{
+  "name": "edmonds_matching",
+  "version": "0.1.0",
+  "files": [
+    "edmonds_matching_bg.wasm",
+    "edmonds_matching.js",
+    "edmonds_matching.d.ts"
+  ],
+  "module": "edmonds_matching.js",
+  "types": "edmonds_matching.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

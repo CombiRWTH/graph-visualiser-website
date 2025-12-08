@@ -1,6 +1,7 @@
 import { VisualisationStateTS as VisStatePrim } from "./prim/config";
 import { VisualisationStateTS as VisStateDijkstra } from "./dijkstra/config";
 import { VisualisationStateTS as VisStateKruskal } from "./kruskal/config";
+import { VisualisationStateTS as VisStateEdmonds } from "./edmonds_matching/config";
 import { VisualisationStateTS as VisStateChristofides } from "./christofides/config";
 import { VisualisationStateTS as VisStateFordFulkerson } from "./ford_fulkerson/config";
 import { VisualisationStateTS as VisStateMbf } from "./mbf/config";
@@ -36,6 +37,7 @@ export interface IAlgorithmStore {
 		| VisStatePrim
 		| VisStateDijkstra
 		| VisStateKruskal
+		| VisStateEdmonds
 		| VisStateChristofides
 		| VisStateMbf
 		| null;
@@ -48,6 +50,7 @@ export interface IAlgorithmStore {
 		| VisStatePrim
 		| VisStateDijkstra
 		| VisStateKruskal
+		| VisStateEdmonds
 		| VisStateChristofides
 		| VisStateFordFulkerson
 		| VisStateMbf

@@ -7,6 +7,7 @@ members = [
   "rust/christofides",
   "rust/prim",
   "rust/kruskal",
+  "rust/edmonds_matching",
   "rust/graph",
   "rust/ford_fulkerson",
   "rust/mbf",

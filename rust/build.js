@@ -5,6 +5,7 @@ const fs = require("fs");
 const PACKAGE_FOLDERS = [
 	"dijkstra",
 	"kruskal",
+	"edmonds_matching",
 	"prim",
 	"christofides",
 	"ford_fulkerson",

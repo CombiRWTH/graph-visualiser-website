@@ -20,6 +20,7 @@
 		"dijkstra": "link:./rust/dijkstra/pkg",
 		"dinic": "link:./rust/dinic/pkg",
 		"edmonds_karp": "link:./rust/edmonds_karp/pkg",
+		"edmonds_matching": "link:./rust/edmonds_matching/pkg",
 		"ford_fulkerson": "link:./rust/ford_fulkerson/pkg",
 		"framer-motion": "^11.2.13",
 		"immer": "^10.0.2",

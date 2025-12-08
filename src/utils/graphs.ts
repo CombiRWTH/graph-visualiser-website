@@ -129,6 +129,21 @@ export function linkInEdgelist(e: LinkTS, edges: number[][], directed = false): 
 	}
 }
 
+export function linkInPath(e: LinkTS, path: number[], directed = false): boolean {
+	const s = parseInt(e.source);
+	const t = parseInt(e.target);
+	const sIndex = path.indexOf(s);
+	const tIndex = path.indexOf(t);
+	if (sIndex === -1 || tIndex === -1) {
+		return false;
+	}
+	if (directed) {
+		return sIndex + 1 === tIndex;
+	} else {
+		return sIndex + 1 === tIndex || sIndex === tIndex + 1;
+	}
+}
+
 export function getEdgesAsStringArray(graph: GraphTS<NodeTS, LinkTS>): string[] {
 	return graph.edges.map((edge) => `{${edge.source},${edge.target}}`);
 }
@@ -237,4 +252,21 @@ export function colorEdge(edge: LinkTS, color: string): void {
 	edge.style ??= {};
 	edge.style.keyshape ??= {};
 	edge.style.keyshape.stroke = color;
+}
+export function highlightEdge(edge: LinkTS, color: string, enabled = true): void {
+	edge.style ??= {};
+	edge.style.keyshape ??= {};
+
+	if (enabled) {
+		edge.style.keyshape.shadowColor = color;
+		edge.style.keyshape.shadowBlur = 20; // ↑ intensity
+		edge.style.keyshape.shadowOffsetX = 0;
+		edge.style.keyshape.shadowOffsetY = 0;
+		edge.style.keyshape.lineWidth = 4; // boost glow
+	} else {
+		delete edge.style.keyshape.shadowColor;
+		delete edge.style.keyshape.shadowBlur;
+		delete edge.style.keyshape.shadowOffsetX;
+		delete edge.style.keyshape.shadowOffsetY;
+	}
 }

@@ -20,12 +20,13 @@ const getSteps = (algorithmName: string): Step[] => {
 				<div>
 					This is your <strong>main graph view</strong>. <br />
 					You can <strong>interact</strong> with the <strong>nodes and edges</strong> here.
-					{algorithmName !== "Kruskal" && (
-						<>
-							<br />
-							Try <strong>clicking a node</strong> to set it as the <strong>start node</strong>.
-						</>
-					)}
+					{algorithmName === "Dijkstra" ||
+						(algorithmName === "Moore-Bellman-Ford" && (
+							<>
+								<br />
+								Try <strong>clicking a node</strong> to set it as the <strong>start node</strong>.
+							</>
+						))}
 				</div>
 			),
 		},

@@ -2,6 +2,7 @@ import React from "react";
 import { useDijkstraStore } from "../algorithms/dijkstra/store";
 import { IAlgorithmStore, IGraphGeneratorOptions } from "../algorithms/algorithm-interfaces";
 import { useKruskalStore } from "../algorithms/kruskal/store";
+import { useEdmondsStore } from "../algorithms/edmonds_matching/store";
 import { usePrimStore } from "../algorithms/prim/store";
 import { useChristofidesStore } from "../algorithms/christofides/store";
 import { useMbfStore } from "../algorithms/mbf/store";
@@ -20,6 +21,7 @@ import { GraphTS } from "./graphs";
 import { LinkTS, NodeTS } from "../algorithms/adapter";
 import { getRandomGraph } from "./graphGenerators";
 import { randomDefaults as randomKruskalDefaults } from "../algorithms/kruskal/config";
+import { randomDefaults as randomEdmondsDefaults } from "../algorithms/edmonds_matching/config";
 import { randomDefaults as randomPrimDefaults } from "../algorithms/prim/config";
 import { randomDefaults as randomDijkstraDefaults } from "../algorithms/dijkstra/config";
 import { randomDefaults as randomChristofidesDefaults } from "../algorithms/christofides/config";
@@ -114,6 +116,21 @@ const Kruskal: IAlgorithmInformation = {
 	hasStartNode: false,
 	getRandomGraph: (options?: Partial<IGraphGeneratorOptions>) =>
 		getRandomGraph({ ...randomKruskalDefaults, ...options }),
+};
+const Edmonds: IAlgorithmInformation = {
+	name: "Edmonds-Matching",
+	description: "",
+	category: AlgorithmCategory.MAX_MATCHING,
+	features: {},
+	requirements: {
+		noDirectedEdge: true,
+		connected: false,
+		noSelfLoop: true,
+	},
+	useAlgorithmStore: useEdmondsStore,
+	hasStartNode: false,
+	getRandomGraph: (options?: Partial<IGraphGeneratorOptions>) =>
+		getRandomGraph({ ...randomEdmondsDefaults, ...options }),
 };
 
 const Prim: IAlgorithmInformation = {
@@ -311,6 +328,7 @@ export const formatMissingRequirements = (
 export const AvailableAlgorithm = {
 	Dijkstra,
 	Kruskal,
+	Edmonds,
 	Prim,
 	Christofides,
 	FordFulkerson,
