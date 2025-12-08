@@ -1,0 +1,14 @@
+{
+  "name": "dinic",
+  "version": "0.1.0",
+  "files": [
+    "dinic_bg.wasm",
+    "dinic.js",
+    "dinic.d.ts"
+  ],
+  "module": "dinic.js",
+  "types": "dinic.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

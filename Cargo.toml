@@ -1,0 +1,19 @@
+[workspace]
+members = [
+  "rust/algorithm",
+  "rust/algorithm/example",
+  "rust/algorithm/impl",
+  "rust/dijkstra",
+  "rust/christofides",
+  "rust/prim",
+  "rust/kruskal",
+  "rust/graph",
+  "rust/ford_fulkerson",
+  "rust/mbf",
+  "rust/edmonds_karp",
+  "rust/dinic"
+]
+
+[profile.release]
+# keep debug info so that we can read error messages
+debug = true

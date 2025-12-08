@@ -1,0 +1,60 @@
+#
+# To contribute improvements to CI/CD templates, please follow the Development guide at:
+# https://docs.gitlab.com/ee/development/cicd/templates.html
+# This specific template is located at:
+# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Rust.gitlab-ci.yml
+
+# Official language image. Look for the different tagged releases at:
+# https://hub.docker.com/r/library/rust/tags/
+image: "rust:1.87.0-bookworm"
+
+variables:
+  CARGO_HOME: $CI_PROJECT_DIR/cargo
+  CARGO_REGISTRIES_CRATES_IO_PROTOCOL: sparse
+
+build:
+  before_script:
+    - apt-get update -yqq
+    - apt-get install -yqq --no-install-recommends build-essential curl
+    # installs nvm (Node Version Manager)
+    - curl -fsSL https://deb.nodesource.com/setup_21.x | bash -
+    - apt-get install -yqq --no-install-recommends nodejs
+    - node -v
+    - curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | /bin/bash
+    - corepack enable
+  script:
+    - yarn install
+    - export NODE_OPTIONS="--max_old_space_size=4096"
+    - yarn build:algo
+    - yarn build
+  cache:
+    key: build-cache
+    paths:
+      - cargo/
+      - target/
+
+# Use cargo to test the project
+test:cargo:
+  before_script:
+    - rustc --version && cargo --version  # Print version info for debugging
+  script:
+    - cargo test --workspace --verbose
+  cache:
+    key: test-cache
+    paths:
+      - cargo/
+      - target/
+
+# Test the formatting of the Rust code
+rustfmt:
+  image:
+    name: alpine:3.17
+  before_script:
+    - apk add rustup
+    - rustup-init -qy --default-host x86_64-unknown-linux-musl --default-toolchain none </dev/null
+    - source $CARGO_HOME/env
+    - rustup toolchain install nightly --profile minimal --component rustfmt
+    - cargo -V
+    - cargo fmt --version
+  script:
+    - cargo +nightly fmt --all -- --check

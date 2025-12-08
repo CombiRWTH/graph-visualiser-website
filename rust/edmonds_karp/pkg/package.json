@@ -1,0 +1,14 @@
+{
+  "name": "edmonds_karp",
+  "version": "0.1.0",
+  "files": [
+    "edmonds_karp_bg.wasm",
+    "edmonds_karp.js",
+    "edmonds_karp.d.ts"
+  ],
+  "module": "edmonds_karp.js",
+  "types": "edmonds_karp.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

@@ -1,0 +1,18 @@
+[package]
+name = "algorithm"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[dependencies]
+algorithm-impl = { path = "./impl" }
+gloo-utils = { version = "0.1.6", features = ["serde"] }
+graph = { path = "../graph" }
+js-sys = "0.3"
+once_cell = { version = "1.8", features = ["parking_lot"] }
+parking_lot = "0.12"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "1"
+wasm-bindgen = { version = "0.2", features = ["strict-macro"] }
+web-sys = { version = "0.3", features = ["console"] }

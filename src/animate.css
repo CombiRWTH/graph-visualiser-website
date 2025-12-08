@@ -1,0 +1,59 @@
+@charset "UTF-8";
+.animated-router {
+  /** START: Custom entry and exit animations **/
+  /** END **/
+}
+.animated-router-container {
+  height: calc(100% - var(--height-navbar));
+  /* animation container node */
+}
+.animated-router-in-transition {
+  /* page animation */
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.animated-router-forward-appear, .animated-router-forward-enter {
+  opacity: 0;
+  transform: translate(100%);
+}
+.animated-router-forward-appear-active, .animated-router-forward-enter-active {
+  opacity: 1;
+  transform: translate(0);
+}
+.animated-router-forward-exit {
+  opacity: 1;
+  transform: translate(0);
+}
+.animated-router-forward-exit-active {
+  opacity: 0;
+  transform: translate(-100%);
+}
+.animated-router-backward-appear, .animated-router-backward-enter {
+  opacity: 0;
+  transform: translate(-100%);
+}
+.animated-router-backward-appear-active, .animated-router-backward-enter-active {
+  opacity: 1;
+  transform: translate(0);
+}
+.animated-router-backward-exit {
+  opacity: 1;
+  transform: translate(0);
+}
+.animated-router-backward-exit-active {
+  opacity: 0;
+  transform: translate(100%);
+}
+.animated-router-forward-appear-active, .animated-router-forward-enter-active, .animated-router-forward-exit-active, .animated-router-backward-appear-active, .animated-router-backward-enter-active, .animated-router-backward-exit-active {
+  /* Transition time and easing effects required for different transition stages */
+  /*transition: transform 0.3s linear; this is for the slide in animation*/
+  transition: opacity 0.3s ease-in;
+}
+.animated-router-forward-exit, .animated-router-backward-exit {
+
+  position: absolute !important;
+  width: 100%;
+  top: 0;
+  left: 0;
+}

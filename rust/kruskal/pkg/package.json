@@ -1,0 +1,14 @@
+{
+  "name": "kruskal",
+  "version": "0.1.0",
+  "files": [
+    "kruskal_bg.wasm",
+    "kruskal.js",
+    "kruskal.d.ts"
+  ],
+  "module": "kruskal.js",
+  "types": "kruskal.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

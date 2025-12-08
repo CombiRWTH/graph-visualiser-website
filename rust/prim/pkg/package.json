@@ -1,0 +1,14 @@
+{
+  "name": "prim",
+  "version": "0.1.0",
+  "files": [
+    "prim_bg.wasm",
+    "prim.js",
+    "prim.d.ts"
+  ],
+  "module": "prim.js",
+  "types": "prim.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

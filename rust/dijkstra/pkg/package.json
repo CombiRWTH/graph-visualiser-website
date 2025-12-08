@@ -1,0 +1,14 @@
+{
+  "name": "dijkstra",
+  "version": "0.1.0",
+  "files": [
+    "dijkstra_bg.wasm",
+    "dijkstra.js",
+    "dijkstra.d.ts"
+  ],
+  "module": "dijkstra.js",
+  "types": "dijkstra.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

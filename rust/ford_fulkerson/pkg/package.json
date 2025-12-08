@@ -1,0 +1,14 @@
+{
+  "name": "ford_fulkerson",
+  "version": "0.1.0",
+  "files": [
+    "ford_fulkerson_bg.wasm",
+    "ford_fulkerson.js",
+    "ford_fulkerson.d.ts"
+  ],
+  "module": "ford_fulkerson.js",
+  "types": "ford_fulkerson.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

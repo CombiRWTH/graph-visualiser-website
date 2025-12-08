@@ -1,0 +1,14 @@
+{
+  "name": "christofides",
+  "version": "0.1.0",
+  "files": [
+    "christofides_bg.wasm",
+    "christofides.js",
+    "christofides.d.ts"
+  ],
+  "module": "christofides.js",
+  "types": "christofides.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

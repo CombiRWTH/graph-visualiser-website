@@ -1,0 +1,14 @@
+{
+  "name": "mbf",
+  "version": "0.1.0",
+  "files": [
+    "mbf_bg.wasm",
+    "mbf.js",
+    "mbf.d.ts"
+  ],
+  "module": "mbf.js",
+  "types": "mbf.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

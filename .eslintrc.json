@@ -1,0 +1,64 @@
+{
+	"root": true,
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"parser": "@typescript-eslint/parser",
+	"extends": [
+		"standard-with-typescript",
+		"eslint:recommended",
+		"plugin:tailwindcss/recommended",
+		"plugin:@typescript-eslint/recommended",
+		"prettier"
+	],
+	"parserOptions": {
+		"project": ["./tsconfig.json"],
+		"ecmaVersion": "latest",
+		"sourceType": "module"
+	},
+	"plugins": ["react", "unused-imports", "import"],
+	"rules": {
+		"@typescript-eslint/no-non-null-assertion": "off",
+		"no-unused-vars": "off",
+		"tailwindcss/classnames-order": "warn",
+		"tailwindcss/enforces-negative-arbitrary-values": "warn",
+		"tailwindcss/enforces-shorthand": "warn",
+		"tailwindcss/migration-from-tailwind-2": "warn",
+		"tailwindcss/no-arbitrary-value": "off",
+		"tailwindcss/no-custom-classname": "off",
+		"tailwindcss/no-contradicting-classname": "error",
+		"unused-imports/no-unused-imports": "warn",
+		"unused-imports/no-unused-vars": [
+			"warn",
+			{
+				"vars": "all",
+				"varsIgnorePattern": "^_",
+				"args": "after-used",
+				"argsIgnorePattern": "^_"
+			}
+		],
+		"@typescript-eslint/explicit-function-return-type": [
+			"warn",
+			{
+				"allowExpressions": true
+			}
+		],
+		"semi": ["error", "always"],
+		"quotes": [
+			"error",
+			"double",
+			{
+				"allowTemplateLiterals": true
+			}
+		],
+		"jsx-quotes": ["error", "prefer-double"],
+		"prefer-const": "error",
+		"no-var": "error"
+	}
+	//	"settings": {
+	//		"import/resolver": {
+	//			"alias": [["@", "."]]
+	//		}
+	//	}
+}

@@ -1,0 +1,10 @@
+{
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
+	"eslint.format.enable": true,
+	"eslint.trace.server": "off",
+	"rust-analyzer.showUnlinkedFileNotification": false
+}

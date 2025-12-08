@@ -1,0 +1,33 @@
+/* tslint:disable */
+/* eslint-disable */
+export const memory: WebAssembly.Memory;
+export const getPseudoCode: () => any;
+export const getGraphPropertyRequirements: () => number;
+export const nextStep: (a: any) => [number, number, number];
+export const prevStep: (a: any) => [number, number, number];
+export const getListLen: () => number;
+export const markShortestPath: (a: any, b: number) => any;
+export const init_panic_handler: () => void;
+export const setGraph: (a: any, b: number) => any;
+export const dropState: (a: any) => void;
+export const getExampleGraph: (a: number) => any;
+export const unmarkShortestPath: (a: any) => any;
+export const __wbg_propertyrequirements_free: (a: number, b: number) => void;
+export const properties_compatible: (a: number, b: number) => number;
+export const __wbg_properties_free: (a: number, b: number) => void;
+export const properties_contains: (a: number, b: number) => number;
+export const graph_properties: (a: any) => number;
+export const __wbg_node_free: (a: number, b: number) => void;
+export const __wbg_get_node_id: (a: number) => number;
+export const __wbg_set_node_id: (a: number, b: number) => void;
+export const __wbg_get_node_name: (a: number) => [number, number];
+export const __wbg_set_node_name: (a: number, b: number, c: number) => void;
+export const node_new: (a: number, b: number, c: number) => number;
+export const __wbindgen_free: (a: number, b: number, c: number) => void;
+export const __wbindgen_exn_store: (a: number) => void;
+export const __externref_table_alloc: () => number;
+export const __wbindgen_export_3: WebAssembly.Table;
+export const __wbindgen_malloc: (a: number, b: number) => number;
+export const __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
+export const __externref_table_dealloc: (a: number) => void;
+export const __wbindgen_start: () => void;
