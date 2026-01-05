@@ -108,10 +108,10 @@ export const useEdmondsStore = create<EdmondsState>()((set, get) => ({
 				if (pos !== undefined) {
 					node.x = pos.x;
 					node.y = pos.y;
-					node.name = String(idx + 1); // 97 = 'a'
 				}
 			});
 		}
+
 		const graphString = JSON.stringify(exampleGraph);
 		localStorage.setItem("currentGraph", graphString);
 		return exampleGraph;
@@ -180,7 +180,7 @@ function colorAndLayoutGraph(
 			}
 
 			// Label if it's a blossom node
-			const name = `bl.${nodeId + 1}`;
+			const name = `bl.${nodeId}`;
 
 			if (state.blossomNodes.includes(nodeId)) {
 				node.style!.label = { value: name };

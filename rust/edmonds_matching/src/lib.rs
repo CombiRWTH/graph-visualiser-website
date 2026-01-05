@@ -678,14 +678,28 @@ fn expand_cycle(
 		path
 	}
 
-	//TODO This here is buggy
+	fn walk_backward(cycle: &Vec<usize>, start: usize, base: usize) -> Vec<usize> {
+		let mut path = Vec::new();
+		let n = cycle.len();
+
+		let mut i = start;
+		loop {
+			path.push(cycle[i]);
+			if cycle[i] == base {
+				break;
+			}
+			i = if i == 0 { n - 1 } else { i - 1 };
+		}
+		path
+	}
+
 	// Now, determine which direction starts with the correct edge type:
 	// For both directions, check the first edge after connection node,
 	// then compare its matchedness to entry_edge_matched to decide.
 
 	// Forward direction:
 
-	let mut forward_path = walk_forward(cycle, conn_idx, base);
+	let forward_path = walk_forward(cycle, conn_idx, base);
 
 	let forward_edge_1 = if forward_path.len() > 1 {
 		edge_matched(forward_path[0], forward_path[1])
@@ -700,16 +714,21 @@ fn expand_cycle(
 	if walk_forward_direction {
 		forward_path
 	} else {
-		forward_path.reverse();
-		forward_path
+		let backward_path = walk_backward(cycle, conn_idx, base);
+		backward_path
 	}
 }
 
 fn augment(m: &mut HashSet<(usize, usize)>, path: &Vec<usize>) {
 	for i in 0 .. path.len() - 1 {
 		let e = (path[i], path[i + 1]);
+		let re = (path[i + 1], path[i]);
+
+		// undirected
 		if m.contains(&e) {
 			m.remove(&e);
+		} else if m.contains(&re) {
+			m.remove(&re);
 		} else {
 			m.insert(e);
 		}
