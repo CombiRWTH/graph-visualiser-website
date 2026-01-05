@@ -12,7 +12,7 @@ const imagePaths: Record<AlgorithmCategory, string> = {
 	[AlgorithmCategory.MINIMUM_SPANNING_TREE]: `${import.meta.env.BASE_URL}images/minimum_spanning_tree.png`,
 	[AlgorithmCategory.HAMILTON_CYCLE]: `${import.meta.env.BASE_URL}images/christofides.png`,
 	[AlgorithmCategory.MAX_FLOW]: `${import.meta.env.BASE_URL}images/max_flow.png`,
-	[AlgorithmCategory.MAX_MATCHING]: `${import.meta.env.BASE_URL}images/max_flow.png`,
+	[AlgorithmCategory.MAX_MATCHING]: `${import.meta.env.BASE_URL}images/matching.png`,
 };
 
 const explainerTexts: Record<AlgorithmCategory, string> = {
