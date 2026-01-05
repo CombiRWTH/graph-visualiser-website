@@ -16,6 +16,8 @@ interface IGraphSelectionCardProps {
 	className?: string;
 	onDelete?: () => void;
 	layout?: ILayoutAlgorithm;
+	weighted?: boolean;
+	directed?: boolean;
 }
 
 function GraphSelectionCard({
@@ -26,6 +28,8 @@ function GraphSelectionCard({
 	deletable = false,
 	onDelete,
 	layout,
+	weighted,
+	directed,
 }: IGraphSelectionCardProps): React.JSX.Element {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [init, setInit] = useState(false);
@@ -35,6 +39,19 @@ function GraphSelectionCard({
 	useEffect(() => {
 		setInit(true);
 	}, []);
+
+	if (graph?.graph !== undefined && weighted === false) {
+		graph.graph.edges.forEach((e) => {
+			e.style ??= { keyshape: {} };
+			e.style.label = { value: "" };
+		});
+	}
+	if (graph?.graph !== undefined && directed === false) {
+		graph.graph.edges.forEach((e) => {
+			e.style ??= { keyshape: {} };
+			e.style.keyshape!.endArrow = { path: "none" };
+		});
+	}
 
 	const colorBaseContent = getDaisyuiColor(ThemeColor.BASE_CONTENT);
 	return (

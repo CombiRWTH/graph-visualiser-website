@@ -60,6 +60,8 @@ function GraphSelectionPage({ algorithm }: IGraphSelectionProps): React.JSX.Elem
 								setGraphStorage((prev) => prev.filter((g) => g.id !== graph.id));
 								removeGraphFromStorage(graph.id);
 							}}
+							weighted={!(algorithm?.requirements.noWeights ?? false)}
+							directed={!(algorithm?.requirements.noDirectedEdge ?? false)}
 						/>
 					))}
 				{graphsStorage.length === 0 && !loadingStorage && (

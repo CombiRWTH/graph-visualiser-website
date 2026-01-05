@@ -181,7 +181,6 @@ export const RandomTrainingPage: React.FC<ITrainingPageProps> = ({ setGraphState
 	 * Vertex Exercise: Calculates the solution and specific answer options for a given graph
 	 */
 	const selectVertexExercise = (): void => {
-		console.log("Starting selectVertexExercise");
 		console.time("selectVertexExercise");
 		// Represents marked vertices in correct order
 		const activeNodes: number[] = [];

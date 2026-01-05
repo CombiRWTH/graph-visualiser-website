@@ -96,6 +96,8 @@ function GraphSelectionExampleGraphs({ algorithm }: IGraphSelectionExampleGraphs
 									? graphLayouts.Circle
 									: graphLayouts.Circle
 						}
+						weighted={!(algorithm?.requirements.noWeights ?? false)}
+						directed={!(algorithm.requirements.noDirectedEdge ?? false)}
 					/>
 				);
 			})}
