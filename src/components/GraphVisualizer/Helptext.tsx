@@ -9,7 +9,7 @@ interface HelptextProps {
  * @param helptext The helptext to display
  */
 export const Helptext: React.FC<HelptextProps> = ({ helptext }) => {
-	const [visible, setVisible] = useState<boolean>(false);
+	const [visible, setVisible] = useState<boolean>(true);
 	return (
 		<div className="ml-auto flex w-fit max-w-md flex-row">
 			<div

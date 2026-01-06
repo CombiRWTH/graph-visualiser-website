@@ -195,13 +195,13 @@ function colorAndLayoutGraph(
 			edge.style.keyshape!.endArrow = { path: "none" };
 			edge.style.label = { value: "" };
 
-			if (
-				linkInEdgelist(edge, state.treeEdges) &&
-				(state.lineOfCode === 2 || state.lineOfCode === 3 || state.lineOfCode === 7)
-			) {
+			if (linkInEdgelist(edge, state.treeEdges) && (state.lineOfCode === 2 || state.lineOfCode === 7)) {
 				highlightEdge(edge, colors.treeHighlightColor);
 			}
-			if (linkInPath(edge, state.augmentingPath) && (state.lineOfCode === 4 || state.lineOfCode === 5)) {
+			if (
+				linkInPath(edge, state.augmentingPath) &&
+				(state.lineOfCode === 3 || state.lineOfCode === 4 || state.lineOfCode === 5)
+			) {
 				highlightEdge(edge, colors.augmentingPathColor);
 			}
 			if (linkInEdgelist(edge, state.matching)) {

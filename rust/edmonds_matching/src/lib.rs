@@ -141,8 +141,7 @@ async fn edmonds_matching(
 		}
 		let exposed = find_exposed(&state.graph, &state.aux_matching);
 
-		state.helptext = "Check exposed vertex in G'".to_string();
-		out.yield_state(Line2, state.clone()).await;
+		
 
 		if exposed.is_none() {
 			state.graph = state.original_graph.clone();
@@ -154,7 +153,12 @@ async fn edmonds_matching(
 		let root = exposed.unwrap();
 		state.tree_root = root;
 
+		state.helptext= format!("Found exposed vertex {root}");
+		out.yield_state(Line2, state.clone()).await;
+
 		let mut tree = AlternatingTree::new(root);
+		
+
 		state.helptext = "Construct maximal M'-alternating tree T".to_string();
 
 		let tree_result = grow_tree(&state.graph, &state.aux_matching, &mut tree, &mut state.tree_edges);
@@ -163,8 +167,10 @@ async fn edmonds_matching(
 			TreeEvent::AugmentingPath(path) => {
 				out.yield_state(Line3, state.clone()).await;
 
+				state.augmenting_path = path.clone();
 				// Line 4: augmenting path found
-				state.helptext = "Augmenting path found in T".to_string();
+				state.helptext= format!("Found M' augmenting path {path:?}");
+
 				out.yield_state(Line4, state.clone()).await;
 
 				// Line 5: translate to M-augmenting path W
@@ -173,7 +179,7 @@ async fn edmonds_matching(
 				let w = lift_path(&state.graph, &path, &blossoms, &state.matching);
 				state.augmenting_path = w.clone();
 
-				state.helptext = "Construct M-augmenting path W".to_string();
+				state.helptext= format!("Found M augmenting path {w:?}");
 				out.yield_state(Line5, state.clone()).await;
 
 				// Line 6: augment M along W
@@ -193,7 +199,7 @@ async fn edmonds_matching(
 				out.yield_state(Line3, state.clone()).await;
 
 				// Line 8: Blossom found
-				state.helptext = "Blossom detected".to_string();
+				state.helptext= format!("Found blossom:  {:?}", blossom.cycle);
 				out.yield_state(Line8, state.clone()).await;
 
 				// Line 9: Shrink blossom
@@ -202,7 +208,8 @@ async fn edmonds_matching(
 				state.graph = shrunk.graph;
 				state.blossom_nodes.push(blossom.base);
 				// Save mapping for path lifting
-				state.helptext = "Shrink blossom to vertex v_B".to_string();
+				state.helptext= format!("Shrink blossom to vertex bl. {:?}", blossom.base);
+
 				out.yield_state(Line9, state.clone()).await;
 
 				// Line 10, 11: Update M'
@@ -221,8 +228,7 @@ async fn edmonds_matching(
 				out.yield_state(Line3, state.clone()).await;
 
 				// Line 13: T is Hungarian
-				state.helptext = "T is Hungarian".to_string();
-				state.helptext= format!("{:?}", &tree.vertices);
+				state.helptext = "T is Hungarian; Remove tree vertices".to_string();
 				out.yield_state(Line13, state.clone()).await;
 
 				// Line 14: Remove vertices of T from G'
@@ -235,7 +241,7 @@ async fn edmonds_matching(
 	}
 
 	// Line 15: Return M
-	state.helptext = "Return maximum matching".to_string();
+	state.helptext = "No more exposed vertices, return maximum matching".to_string();
 	out.yield_state(Line15, state.clone()).await;
 }
 fn remove_vertices(
