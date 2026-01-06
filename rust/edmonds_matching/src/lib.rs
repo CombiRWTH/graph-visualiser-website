@@ -222,6 +222,7 @@ async fn edmonds_matching(
 
 				// Line 13: T is Hungarian
 				state.helptext = "T is Hungarian".to_string();
+				state.helptext= format!("{:?}", &tree.vertices);
 				out.yield_state(Line13, state.clone()).await;
 
 				// Line 14: Remove vertices of T from G'
@@ -237,45 +238,24 @@ async fn edmonds_matching(
 	state.helptext = "Return maximum matching".to_string();
 	out.yield_state(Line15, state.clone()).await;
 }
-/// Removes all vertices in `to_remove` from graph `g`.
-/// Returns a new graph with:
-///   - only the remaining vertices
-///   - edges only between remaining vertices
-///   - nodes reindexed contiguously (0..new_n-1)
-fn remove_vertices(g: &Graph<EdmondsConfiguration>, to_remove: &HashSet<usize>) -> Graph<EdmondsConfiguration> {
-	use std::collections::HashMap;
-	let mut new_graph = g.clone(); // Start from a copy and prune
+fn remove_vertices(
+    g: &Graph<EdmondsConfiguration>,
+    to_remove: &HashSet<usize>,
+) -> Graph<EdmondsConfiguration> {
+    let mut new_graph = g.clone();
 
-	// 1. Determine mapping old_index → new_index
-	let mut map_old_to_new = HashMap::new();
-	let mut next_index = 0;
+    // Remove nodes whose id is in to_remove
+    new_graph.nodes.retain(|node| !to_remove.contains(&node.id));
 
-	for old in 0 .. g.nodes.len() {
-		if !to_remove.contains(&old) {
-			map_old_to_new.insert(old, next_index);
-			next_index += 1;
-		}
-	}
+    // Remove edges that touch any removed node
+    new_graph.links.retain(|e| {
+        !to_remove.contains(&e.source) &&
+        !to_remove.contains(&e.target)
+    });
 
-	// 2. Build new node list
-	new_graph.nodes.retain(|node| map_old_to_new.contains_key(&node.id));
-
-	for node in new_graph.nodes.iter_mut() {
-		node.id = map_old_to_new[&node.id];
-	}
-
-	// 3. Build new edge list
-	new_graph
-		.links
-		.retain(|e| map_old_to_new.contains_key(&e.source) && map_old_to_new.contains_key(&e.target));
-
-	for link in new_graph.links.iter_mut() {
-		link.source = map_old_to_new[&link.source];
-		link.target = map_old_to_new[&link.target];
-	}
-
-	new_graph
+    new_graph
 }
+
 struct AlternatingTree {
 	root: usize,
 	pub vertices: HashSet<usize>,
@@ -335,6 +315,7 @@ fn grow_tree(
 	// helper: check if v is exposed
 	let is_exposed = |v: usize| !m.iter().any(|&(a, b)| a == v || b == v);
 
+	let mut found_blossom: Option<Blossom> = None;
 	while let Some(u) = queue.pop_front() {
 		let level_u = tree.level[&u];
 		let u_is_even = level_u % 2 == 0;
@@ -395,7 +376,7 @@ fn grow_tree(
 				let mut cycle = path_u;
 				cycle.extend(path_v);
 
-				return TreeEvent::BlossomFound(Blossom { cycle, base });
+				found_blossom = Some(Blossom { cycle, base });
 			}
 
 			// EXTENSION RULES
@@ -445,6 +426,9 @@ fn grow_tree(
 	// BFS exhausted → decide result
 	if let Some(path) = found_augmenting_path {
 		return TreeEvent::AugmentingPath(path);
+	}
+	if let Some(blossom) = found_blossom {
+		return TreeEvent::BlossomFound(blossom);
 	}
 	TreeEvent::Hungarian
 }
