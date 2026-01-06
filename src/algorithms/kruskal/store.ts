@@ -92,7 +92,7 @@ export const useKruskalStore = create<KruskalState>()((set, get) => ({
 				if (pos !== undefined) {
 					node.x = pos.x;
 					node.y = pos.y;
-					node.name = String.fromCharCode(97 + idx); // 97 = 'a'
+					// node.name = String.fromCharCode(97 + idx); // 97 = 'a'
 				}
 			});
 		}

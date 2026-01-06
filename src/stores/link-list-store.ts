@@ -17,6 +17,8 @@ interface linkState {
 	isTreeMemberInput?: boolean;
 	correctResult: boolean;
 	color?: string;
+	sourceName: string;
+	targetName: string;
 }
 
 interface linkListState {
@@ -57,6 +59,8 @@ export const useLinkListStore = create<linkListState>((set, get) => ({
 				isTreeMember: isLinkTreeMember?.(graph.edges[i]),
 				correctResult: isLinkCorrectResult(graph.edges[i]),
 				color: graph.edges[i].color,
+				sourceName: graph.nodes.find((y) => y.id === graph.edges[i].source)?.name ?? graph.edges[i].source,
+				targetName: graph.nodes.find((y) => y.id === graph.edges[i].target)?.name ?? graph.edges[i].target,
 			});
 		}
 		set(() => ({ linkList }));

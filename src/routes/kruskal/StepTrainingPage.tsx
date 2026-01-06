@@ -331,7 +331,7 @@ export const StepTrainingPage: React.FC<ITrainingPageProps> = ({ graphState, set
 											{/* counterpart to the badge */}
 											<div className="w-10" />
 											<span className={"text-sm font-semibold"}>
-												{"(" + link.source + "," + link.target + ")"}
+												{"(" + link.sourceName + "," + link.targetName + ")"}
 											</span>
 											{getCurrentStage()!.stageId === AlgorithmStages.Review ? (
 												<div
