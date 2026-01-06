@@ -39,7 +39,8 @@ function GraphRunBtn({ algorithm, graph }: IGraphRunBtnProps): React.JSX.Element
 	function getGraphRequirementIssue(algorithm: IAlgorithmInformation): string | null {
 		const requirements = algorithm?.requirements;
 		if (requirements == null) return null;
-		const { connected, complete, noDirectedEdge, noUndirectedEdge, noSelfLoop, noNegativeWeights } = requirements;
+		const { connected, complete, noDirectedEdge, noUndirectedEdge, noSelfLoop, noNegativeWeights, noWeights } =
+			requirements;
 
 		if (graph?.graph?.nodes?.length === 0) {
 			return "Graph must be non-empty.";
@@ -59,7 +60,7 @@ function GraphRunBtn({ algorithm, graph }: IGraphRunBtnProps): React.JSX.Element
 		if (noNegativeWeights === true && hasNegativeEdge) {
 			return "Graph must not contain negative edge weights.";
 		}
-		if (!allEdgesHaveWeight()) {
+		if (noWeights === false && !allEdgesHaveWeight()) {
 			return "All edges must have weights.";
 		}
 		if (complete === true && !isComplete) {
@@ -83,7 +84,7 @@ function GraphRunBtn({ algorithm, graph }: IGraphRunBtnProps): React.JSX.Element
 					edges: graph.graph.edges?.map((edge) => ({
 						...edge,
 						color: edge.style?.keyshape?.stroke !== undefined ? String(edge.style.keyshape.stroke) : "",
-						weight: Number(edge.style!.label!.value!),
+						weight: Number(edge.style?.label?.value ?? 1),
 					})),
 				},
 				// the remaining style information that won't get send to rust:
