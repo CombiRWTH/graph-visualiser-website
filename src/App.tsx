@@ -11,14 +11,14 @@ import { Header } from "./components/Header";
 import GraphSelectionRouter from "./routes/GraphSelectionRouter";
 import GraphBuilderRouter from "./routes/GraphBuilderRouter";
 import { GraphConceptTrainingPage } from "./components/ConceptTrainingPage/GraphConceptTainingPage";
-import { FeedbackDialog } from "./components/HomePage/FeedbackDialog";
+// import { FeedbackDialog } from "./components/HomePage/FeedbackDialog";
 import AppliedExamplePage from "./components/AppliedExamples/AppliedExamplePage";
 
 const App: React.FC = () => (
 	<HashRouter>
 		{/* <div className="flex min-h-dvh w-full flex-col"> */}
 		<Header />
-		<FeedbackDialog />
+		{/* <FeedbackDialog /> */}
 		<AnimatedRoutes className="flex grow flex-col">
 			<Route
 				path="/"
