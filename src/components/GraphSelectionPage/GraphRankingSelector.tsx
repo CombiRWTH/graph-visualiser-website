@@ -3,6 +3,7 @@ import { GraphTS } from "../../utils/graphs";
 import { getGraphStats } from "../../utils/get-TSgraph-stats";
 import { LinkTS, NodeTS } from "../../algorithms/adapter";
 import { IAlgorithmInformation } from "../../utils/available-algorithms";
+import { ArrowDownUp } from "lucide-react";
 
 type SortKey = "none" | "avgDegree" | "numNodes" | "numEdges" | "density";
 
@@ -34,25 +35,22 @@ const GraphRankingSelector: React.FC<GraphRankingSelectorProps> = ({ graphs, set
 	}, [sortKey]);
 
 	return (
-		<div className="form-control w-full max-w-xs">
-			<label
-				className="label"
-				htmlFor="sortKey"
-			>
-				<span className="label-text font-medium">Sort example graphs by:</span>
-			</label>
-			<select
-				id="sortKey"
-				className="select select-bordered select-sm"
-				value={sortKey}
-				onChange={(e) => setSortKey(e.target.value as SortKey)}
-			>
-				<option value="none">Default</option>
-				<option value="avgDegree">Average Degree</option>
-				<option value="numNodes">Number of Nodes</option>
-				<option value="numEdges">Number of Edges</option>
-				<option value="density">Density</option>
-			</select>
+		<div className="form-control ml-auto w-full max-w-xs">
+			<div className="mt-2 flex items-center justify-end space-x-2">
+				<ArrowDownUp className="text-gray-500 " />
+				<select
+					id="sortKey"
+					className="select select-ghost select-sm"
+					value={sortKey}
+					onChange={(e) => setSortKey(e.target.value as SortKey)}
+				>
+					<option value="none">Sort by: Featured</option>
+					<option value="avgDegree">Sort by: Average Degree</option>
+					<option value="numNodes">Sort by: Number of Nodes</option>
+					<option value="numEdges">Sort by: Number of Edges</option>
+					<option value="density">Sort by: Density</option>
+				</select>
+			</div>
 		</div>
 	);
 };
