@@ -5,7 +5,6 @@ import { ShapesIcon, WorkflowIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { CategoryCard } from "./CategoryCard";
 import AppliedExamplesCard from "../AppliedExamples/AppliedExampleButton";
-
 /**
  * Home page with vertically stacked categories and graph selection cards
  */
