@@ -90,7 +90,6 @@ const Dijkstra: IAlgorithmInformation = {
 	requirements: {
 		noNegativeWeights: true,
 		noUndirectedEdge: true,
-		noWeights: false,
 	},
 	useAlgorithmStore: useDijkstraStore,
 	hasStartNode: true,
@@ -113,7 +112,6 @@ const Kruskal: IAlgorithmInformation = {
 		noDirectedEdge: true,
 		connected: true,
 		noSelfLoop: true,
-		noWeights: false,
 	},
 	useAlgorithmStore: useKruskalStore,
 	hasStartNode: false,
@@ -152,7 +150,6 @@ const Prim: IAlgorithmInformation = {
 		noDirectedEdge: true,
 		connected: true,
 		noSelfLoop: true,
-		noWeights: false,
 	},
 	useAlgorithmStore: usePrimStore,
 	hasStartNode: true,
@@ -173,7 +170,6 @@ const Christofides: IAlgorithmInformation = {
 		connected: true,
 		complete: false,
 		noSelfLoop: true,
-		noWeights: false,
 	},
 	useAlgorithmStore: useChristofidesStore,
 	hasStartNode: false,
@@ -194,7 +190,6 @@ const FordFulkerson: IAlgorithmInformation = {
 		connected: true,
 		complete: false,
 		noSelfLoop: true,
-		noWeights: false,
 	},
 	useAlgorithmStore: useFordFulkersonStore,
 	hasStartNode: false,
@@ -215,7 +210,6 @@ const EdmondsKarp: IAlgorithmInformation = {
 		connected: true,
 		complete: false,
 		noSelfLoop: true,
-		noWeights: false,
 	},
 	useAlgorithmStore: useEdmondsKarpStore,
 	hasStartNode: false,
@@ -234,7 +228,6 @@ const Dinic: IAlgorithmInformation = {
 		connected: true,
 		complete: false,
 		noSelfLoop: true,
-		noWeights: false,
 	},
 	useAlgorithmStore: useDinicStore,
 	hasStartNode: false,
@@ -252,7 +245,6 @@ const Mbf: IAlgorithmInformation = {
 	},
 	requirements: {
 		noUndirectedEdge: true,
-		noWeights: false,
 	},
 	useAlgorithmStore: useMbfStore,
 	hasStartNode: true,
@@ -326,6 +318,9 @@ export const formatMissingRequirements = (
 				break;
 			case "connected":
 				formattedMessages.push("The graph must be connected.");
+				break;
+			case "noWeights":
+				formattedMessages.push("The graph must not have edge weights.");
 				break;
 			default:
 				formattedMessages.push(`The graph must satisfy the ${key} requirement.`);
